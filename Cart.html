@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Корзина</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="Resources/style.css">
+	<link rel="stylesheet" href="Resources/responsive.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js" defer></script>
+    <script src="Resources/app.js" defer></script>
+	<script src="Resources/main.js" defer></script>
+</head>
+<body>
+<div id="app">
+    <header>
+        <div class="header-left">
+            <img src="Images/Logo1.png" alt="Логотип">
+            <h1>Precious Numismatics</h1>
+        </div>
+
+        <div class="header-right">
+			<div class="burger" onclick="toggleMenu1()">
+		<img src="Images/Burger.png" alt="Фото" id="burger2">
+			</div>
+            <div class="contact-info" onclick="toggleMenu()">
+                <img src="Images/Icon.png" alt="Фото" id="profilePhoto">
+            </div>
+            <div id="men" class="menu">
+                <a href="#" onclick="toggleLoginForm()">Авторизуватися 🔑</a>
+                <a href="#" onclick="logout()">Вийти з системи 🚪</a>
+                <a href="Pages/Privacy Policy.html" >Політика<br>конфіденційності 🛡️</a>
+                <a href="Pages/Terms of use.html" target="_blank">Користувацька<br>угода 📑</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+	<div class="new-nav hidden" id="newnav">
+        <nav>
+            <ul>
+                <li><a href="Index.html">До головної ◀️</a></li>
+                <li><a id="menu2" href="#Information">Опис 📄</a></li>
+                <li><a id="menu3" href="#Press">Обране 💖</a></li>
+                <li><a id="menu4" href="#Basket">Товари в кошику 🛍️</a></li>
+                <hr>
+                <li><a href="">Корзина 🛒</a></li>
+                <li><a href="Pages/Review.html">Залишити відгук ⭐</a></li>
+                <li><a href="Pages/Technical Support.html">Технічна підтримка 📞</a></li>
+                <li><a href="Pages/Reference.html">Довідка 📚</a></li>
+            </ul>
+        </nav>
+	</div>
+    <div class="content">
+	    <div id="Information" class="section">
+        <h1>Корзина 🛒</h1>
+			<div class="content1">
+				<p>Вітаємо у розділі "Корзина"! Тут ви можете переглянути всі обрані вами товари перед оформленням замовлення. Ми розробили цей розділ з урахуванням вашої зручності та швидкості оформлення покупок.</p>
+				<ul>
+					<li>Зміна кількості товарів: Якщо ви бажаєте змінити кількість товару, ви можете це зробити просто змінивши кількість відповідного товару у полі кількості.</li>
+					<li>Видалення товарів: Якщо ви вирішили вилучити який-небудь товар зі своєї корзини, просто скористайтеся опцією видалення, що доступна поруч з кожним товаром.</li>
+					<li>Підсумок замовлення: Внизу списку товарів ви побачите підсумок замовлення, який відображає загальну суму замовлення до оплати.</li>
+					<li>Оформлення замовлення: Після перевірки вмісту корзини ви можете перейти до оформлення замовлення, натиснувши відповідну кнопку "Оформити замовлення".</li>
+				</ul>
+			</div>
+		</div>
+		<div id="Press" class="section">
+		<h2>Обране 💖</h2>
+		<h2 id="Press2" v-if="cartOfFavorites.length">Кількість товарів: {{ countFavorites() }}</h2>
+            <div class="catalog">
+                <div v-for="product in cartOfFavorites" :key="product.id" class="product">
+                    <img :src="product.img" :alt="product.alt">
+                    <h3 v-html="product.name"></h3>
+                    <div class="divider"></div>
+                    <p>{{ product.price }}</p>
+					<p><button id="product2" @click="removeProductFromFavorites(product)">Видалити ❌</button></p>
+                </div>
+            </div>
+		<button id="Press1" v-if="cartOfFavorites.length" @click="clearFavorites() > 0">Стерти список обраних товарів 💔</button>
+		<p id="Press2" v-if="cartOfFavorites.length === 0">Ви ще нічого не додали до обраного</p>
+        </div>
+        <div id="Basket" class="section">
+            <h2>Товари в кошику 🛍️</h2>
+			<h2 id="Press2" v-if="cartOfProducts.length">Кількість товарів: {{ countProducts() }}</h2>
+            <div class="catalog">
+                <div v-for="product in cartOfProducts" :key="product.id" class="product">
+                    <img :src="product.img" :alt="product.alt">
+                    <h3 v-html="product.name"></h3>
+                    <div class="divider"></div>
+                    <p>{{ product.price }}</p>
+					<p><button id="product2" @click="removeProductFromCart(product)">Видалити ❌</button></p>
+                </div>
+            </div>
+			<button id="Basket1" v-if="cartOfProducts.length" @click="clearCart() > 0">Очистити корзину 🗑️</button>
+			<a v-if="cartOfProducts.length" :href="basketUrl" id="Basket1" target="_blank">Оформити замовлення 📦</a>
+			<p id="Press2" v-if="cartOfProducts.length === 0">Ви ще нічого не додали до корзини</p>
+        </div>
+    </div>
+</div>
+</div>
+</body>
+</html>
