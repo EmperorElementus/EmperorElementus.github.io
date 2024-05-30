@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Precious Numismatics</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="../Resources/style.css">
+	<link rel="stylesheet" href="../Resources/responsive.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js" defer></script>
+    <script src="../Resources/app.js" defer></script>
+	<script src="../Resources/main.js" defer></script>
+</head>
+<body>
+
+<header>
+    <div class="header-left">
+        <img src="../Images/Logo1.png" alt="Логотип">
+        <h1>Precious Numismatics</h1>
+    </div>
+<div class="header-right">
+	<div class="burger" onclick="toggleMenu1()">
+		<img src="../Images/Burger.png" alt="Фото" id="burger2">
+	</div>
+    <div class="contact-info" onclick="toggleMenu()">
+        <img src="../Images/Icon.png" alt="Фото" id="profilePhoto">
+    </div>
+    <div id="men" class="menu">
+        <a href="#" onclick="toggleLoginForm()">Авторизуватися 🔑</a>
+        <a href="#" onclick="logout()">Вийти з системи 🚪</a>
+		<a href="Privacy Policy.html" target="_blank" onclick="toggleMenu()" >Політика<br>конфіденційності 🛡️</a>
+		<a href="Terms of use.html" target="_blank" onclick="toggleMenu()" >Користувацька<br>угода 📑</a>
+    </div>
+</div>
+
+
+</header>
+
+<div class="login-form" id="loginForm" style="display: none;">
+    <form onsubmit="submitForm(event)">
+        <label for="email">Електронна пошта:</label>
+        <input type="email" id="email" name="email" required>
+        <label for="password">Пароль:</label>
+        <input type="password" id="password" name="password" required>
+        <label for="username">Нікнейм:</label>
+        <input type="text" id="username" name="username" required>
+        <button type="submit" id="loginButton">Авторизуватися</button>
+        <button type="button" onclick="toggleLoginForm()">Скасувати</button>
+    </form>
+</div>
+
+<div class="container">
+<div class="new-nav hidden" id="newnav">
+    <nav>
+        <ul>
+            <li><a href="../Index.html">До головної ◀️</a></li>
+            <li><a id="menu1" href="#recommendations">Рекомендації 📋</a></li>
+            <li><a id="menu2" href="#thoughts">Думки та враження 💭</a></li>
+            <li><a id="menu3" href="#writeReview">Написати відгук ✍️</a></li>
+            <hr><li><a href="../Cart.html">Корзина 🛒</a></li></hr>
+            <li><a href="">Залишити відгук ⭐</a></li>
+            <li><a href="Technical Support.html">Технічна підтримка 📞</a></li>
+            <li><a href="Reference.html">Довідка 📚</a></li>
+        </ul>
+    </nav>
+</div>
+    <div class="content">
+        <div id="recommendations" class="section">
+            <h1>Залишити відгук ⭐</h1>
+            <div class="content1">
+                <ul>
+                    <li>Будьте конкретними: Опишіть свій досвід або враження якомога детальніше.</li>
+                    <li>Будьте чесними: Поділіться своїми щирими думками і почуттями, навіть якщо це стосується негативного досвіду.</li>
+                    <li>Об'єктивність: Ставте оцінку продукту або послузі з об'єктивної точки зору.</li>
+                    <li>Позитивні та негативні сторони: Вкажіть деякі конкретні моменти, які вам сподобалися, і ті, які, на вашу думку, можна покращити.</li>
+                    <li>Особистий досвід: Якщо це можливо, підкріпіть свої слова власним досвідом або прикладами.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="thoughts" class="section">
+            <h2>Думки та враження 💭</h2>
+            <div id="reviewsContainer">
+                <div class="review">
+                    <div class="reviewHeader">
+                        <p class="username">Имя Пользователя</p>
+                    </div>
+                    <div class="reviewBody">
+                        <p class="reviewText">Текст отзыва</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="writeReview" class="section">
+            <h2>Написати відгук ✍️</h2>
+            <form id="reviewForm" onsubmit="submitReview(event)">
+                <textarea id="reviewText" placeholder="Ваш відгук"></textarea>
+                <a href="" class="button-link" onclick="submitReview(event)">Відправити 📬</a>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

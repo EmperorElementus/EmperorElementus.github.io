@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Precious Numismatics</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="Resources/style.css">
+	<link rel="stylesheet" href="Resources/responsive.css">
+    <script src="Resources/main.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js" defer></script>
+    <script src="Resources/app.js" defer></script>
+</head>
+
+<body>
+<div id="app">
+    <header>
+        <div class="header-left">
+            <img src="Images/Logo1.png" alt="Логотип">
+            <h1>Precious Numismatics</h1>
+        </div>
+
+        <div class="header-right">
+			<div class="burger" onclick="toggleMenu1()">
+		<img src="Images/Burger.png" alt="Фото" id="burger2">
+			</div>
+            <div class="contact-info" onclick="toggleMenu()">
+                <img src="Images/Icon.png" alt="Фото" id="profilePhoto">
+            </div>
+            <div id="men" class="menu">
+                <a href="#" onclick="toggleLoginForm()">Авторизуватися 🔑</a>
+                <a href="#" onclick="logout()">Вийти з системи 🚪</a>
+                <a href="Pages/Privacy Policy.html" >Політика<br>конфіденційності 🛡️</a>
+                <a href="Pages/Terms of use.html" target="_blank">Користувацька<br>угода 📑</a>
+            </div>
+        </div>
+    </header>
+
+<div class="container">
+	<div id="Placing1" class="section">
+	<h1 v-html="currentProduct.name"></h1>
+		<div class="catalog">
+		<div class="product-details">
+		<div class="product8">
+        <img :src="currentProduct.img" :alt="currentProduct.alt">
+		</div>
+		<div class="product9">
+		<h3>Загальна інформація тимчасово не доступна у вигляді списку, але її можна подивитися в pdf:</h3>
+		<p><button id="product2" @click="openProductLink(currentProduct.link)">Читати 📕</button></p>
+		</div>
+		</div>
+		</div>
+	</div>
+</div>
+</div>
+</body>
+
+</html>
